@@ -47,10 +47,9 @@ class RAS{
        this.datatest = datatst;
 
        var tam = this.datatrain.length;
-	   var labels = new Array(tam);
+	     var labels = new Array(tam);
      
        for(var i=0;i<tam;i++){
-        //console.log("valor x:"+datatr[i][1]+" valor min"+min+" valor max"+max+" x>=min:"+(datatr[i][1] >= min)+" x<=max:"+(datatr[i][1] <= max));
         if((datatr[i][1] >= min)&&(datatr[i][1] <= max)){
             labels[i] = 1;
          }else{
