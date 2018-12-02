@@ -114,9 +114,9 @@ class RAS{
        this.fit = fit;
 	 }
 
-	train(){
+	train(options={kernel: 'rbf', rbfsigma: 1}){
 		var svm = new svmjs.SVM();
-		svm.train(this.datatrain, this.labels, {kernel: 'rbf', rbfsigma: 1});
+		svm.train(this.datatrain, this.labels, options);
 		this.#svmk = svm;
 	}
 

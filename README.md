@@ -37,7 +37,7 @@ audio.volume = ras.ClassifyVol(cvol);
 </script>
 ```
 
-Neste caso ele fará o treinamento através do método ```train()```, e ```ClassifyVol()``` irá classificar o volume de áudio html que definimos pela tag audio(poderia ser um vídeo também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
+Neste caso ele fará o treinamento através do método ```train()```, e ```ClassifyVol()``` irá classificar o volume de áudio html que definimos pela tag ```audio```(poderia ser uma tag ```vídeo``` também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
 
 No caso podemos utilizar um fator percentual também
 
@@ -111,4 +111,8 @@ ras.test();
 </script>
 ```
 
-os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar```.
+os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar``` ou utilizando o comando ```Ctrl+Shift+I```.
+
+## Observações
+
+Dependendo da quantidade de dados utilizados para treino e teste, pode ser que ele se torne ineficiente em sua classificação, o recomendado é que o total de dados seja pelomenos 10 para uma classificação eficiente, no caso você pode configurar sua classificação utilizando uma struct ```var options = {}; ``` da melhor maneira para utilização no ras, com o método ```RAS.train(options);``` caso esteja almejando um desempenho melhor, você pode [ler](https://github.com/karpathy/svmjs) a documentação para saber como configurar a svm do ras, no entanto não é recomendado. 
