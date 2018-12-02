@@ -136,7 +136,7 @@ ras.test();
 
 </script>
 ```
-Neste caso PATTERNOP é uma constante de opções padrão para classificação da svm, e cross corresponde ao número de iterações para a validação cruzada, a qual selecionará dentre vários modelos svms o melhor modelo candidato a melhor classificação para o treinamento, e assim fará o teste no final. 
+Neste caso ```PATTERNOP``` é uma constante de opções padrão para classificação da svm, e ```cross``` corresponde ao número de iterações para a validação cruzada, a qual selecionará dentre vários modelos svms o melhor modelo candidato a melhor classificação para o treinamento, e assim fará o teste no final. 
 
 ## Observações
 
