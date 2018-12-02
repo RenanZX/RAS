@@ -111,7 +111,9 @@ ras.test();
 </script>
 ```
 
-os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar``` ou utilizando o comando ```Ctrl+Shift+I```.
+os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar``` ou utilizando o comando ```Ctrl+Shift+I```, assim como pode ser visto abaixo.
+
+![](rastut.gif)
 
 ## Observações
 
