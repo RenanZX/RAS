@@ -1,42 +1,44 @@
-class RAS{
-	#min;
-	#max;
-	#svmk;
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+class RAS{
 	constructor(vol, min, max, train = 21, test = 9){
        var datatr = new Array(train);
        var sampletr = Math.round(train/3);
        var k = 0;
        var fit = vol;
-       this.#min = min;
-       this.#max = max;
+       this.min = min;
+       this.max = max;
 
-       for(i = 0;i < sampletr; i++){
-         datatr[i] = [fit, (Math.floor(Math.random() * (+max - +min)+ +min))];
+       for(var i = 0;i < sampletr; i++){
+         datatr[i] = [fit, getRandomInt(min,max)];
        }
 
-       for(i=sampletr; i < train ; i++){
+       for(var i=sampletr; i < train ; i++){
        	 if(k = 1){
-       	 	datatr[i] = [fit, (Math.floor(Math.random()*0)+(max-1))];
+       	 	datatr[i] = [fit, getRandomInt(max,100)];
        	 	k = 0;
        	 }else{
-       	    datatr[i] = [fit,(Math.floor(Math.random()*100)+(min+1))];
+       	    datatr[i] = [fit, getRandomInt(0,min)];
        	    k = 1;
        	 }
        }
 
-       datatst = new Array(test);
-       sampletst = Math.round(test/2);
-       for(j = 0;j < sampletst; j++){
-         datatst[j] = [fit, (Math.floor(Math.random() * (+max - +min)+ +min))];
+       var datatst = new Array(test);
+       var sampletst = Math.round(test/2);
+       for(var j = 0;j < sampletst; j++){
+         datatst[j] = [fit, getRandomInt(min,max)];
        }
 
-       for(j=sampletst; j < test ; i++){
+       for(var j=sampletst; j < test ; j++){
        	 if(k = 1){
-       	 	datatst[j] = [fit, (Math.floor(Math.random()*0)+(max-1))];
+       	 	datatst[j] = [fit, getRandomInt(max,100)];
        	 	k = 0;
        	 }else{
-       	    datatst[j] = [fit,(Math.floor(Math.random()*100)+(min+1))];
+       	    datatst[j] = [fit, getRandomInt(0,min)];
        	    k = 1;
        	 }
        }
@@ -44,18 +46,19 @@ class RAS{
        this.datatrain = datatr;
        this.datatest = datatst;
 
-       tam = this.datatrain.length;
-	   label = new Array(tam);
+       var tam = this.datatrain.length;
+	   var labels = new Array(tam);
      
-       for(i=0;i<tam;i++){
-        if((datatr[1] >= min)&&(datatr[1] <= max)){
-            label[i] = 1;
+       for(var i=0;i<tam;i++){
+        //console.log("valor x:"+datatr[i][1]+" valor min"+min+" valor max"+max+" x>=min:"+(datatr[i][1] >= min)+" x<=max:"+(datatr[i][1] <= max));
+        if((datatr[i][1] >= min)&&(datatr[i][1] <= max)){
+            labels[i] = 1;
          }else{
-            label[i] = -1;
+            labels[i] = -1;
          }
        }
 
-       this.labels = label;
+       this.labels = labels;
        this.fit = fit;
 	}
 
@@ -64,72 +67,73 @@ class RAS{
       var min = (1 - factor)*vol;
       var k = 0;
       var fit = vol;
-      this.#min = min;
-      this.#max = max;
+      this.min = min;
+      this.max = max;
 
-       for(i = 0;i < sampletr; i++){
-         datatr[i] = [fit, (Math.floor(Math.random() * (+max - +min)+ +min))];
+       for(var i = 0;i < sampletr; i++){
+         datatr[i] = [fit, getRandomInt(min,max)];
        }
 
-       for(i=sampletr; i < train ; i++){
-       	 if(k = 1){
-       	 	datatr[i] = [fit, (Math.floor(Math.random()*0)+(max-1))];
-       	 	k = 0;
-       	 }else{
-       	    datatr[i] = [fit,(Math.floor(Math.random()*100)+(min+1))];
-       	    k = 1;
-       	 }
+       for(var i=sampletr; i < train ; i++){
+         if(k = 1){
+          datatr[i] = [fit, getRandomInt(max,100)];
+          k = 0;
+         }else{
+            datatr[i] = [fit, getRandomInt(0,min)];
+            k = 1;
+         }
        }
 
-       datatst = new Array(test);
-       sampletst = Math.round(test/2);
-       for(j = 0;j < sampletst; j++){
-         datatst[j] = [fit, (Math.floor(Math.random() * (+max - +min)+ +min))];
+       var datatst = new Array(test);
+       var sampletst = Math.round(test/2);
+       for(var j = 0;j < sampletst; j++){
+         datatst[j] = [fit, getRandomInt(min,max)];
        }
 
-       for(j=sampletst; j < test ; i++){
-       	 if(k = 1){
-       	 	datatst[j] = [fit, (Math.floor(Math.random()*0)+(max-1))];
-       	 	k = 0;
-       	 }else{
-       	    datatst[j] = [fit,(Math.floor(Math.random()*100)+(min+1))];
-       	    k = 1;
-       	 }
+       for(var j=sampletst; j < test ; j++){
+         if(k = 1){
+          datatst[j] = [fit, getRandomInt(max,100)];
+          k = 0;
+         }else{
+            datatst[j] = [fit, getRandomInt(0,min)];
+            k = 1;
+         }
        }
 
        this.datatrain = datatr;
        this.datatest = datatst;
 
-       tam = this.datatrain.length;
-	   label = new Array(tam);
+       var tam = this.datatrain.length;
+     var labels = new Array(tam);
      
-       for(i=0;i<tam;i++){
+       for(var i=0;i<tam;i++){
         if((datatr[i][1] >= min)&&(datatr[i][1] <= max)){
-            label[i] = 1;
+            labels[i] = 1;
          }else{
-            label[i] = -1;
+            labels[i] = -1;
          }
        }
-       this.labels = label;
+
+       this.labels = labels;
        this.fit = fit;
 	 }
 
 	train(options={kernel: 'rbf', rbfsigma: 1}){
 		var svm = new svmjs.SVM();
 		svm.train(this.datatrain, this.labels, options);
-		this.#svmk = svm;
+    this.svmk = svm;
 	}
 
 	test(){
      var tam = this.datatest.length;
 		 var validlabels = new Array(tam);
      var datatest = this.datatest;
-     var svm = this.#svmk;
-     var min = this.#min;
-     var max = this.#max;
+     var svm = this.svmk;
+     var min = this.min;
+     var max = this.max;
 
-     for(i=0;i<tam;i++){
-     if((datatest[i][1] >= min)&&(datatest[i][1] <= max)){
+     for(var i=0;i<tam;i++){
+      if((datatest[i][1] >= min) && (datatest[i][1] <= max) ){
         validlabels[i] = 1;
       }else{
         validlabels[i] = -1;
@@ -139,7 +143,7 @@ class RAS{
     var testlabels = svm.predict(datatest);
     var correctl = 0;
     var errorl = 0;
-    for(i=0;i<tam;i++){
+    for(var i=0;i<tam;i++){
       if(testlabels[i] == validlabels[i]){
         correctl+=1;
       }else{
@@ -147,13 +151,16 @@ class RAS{
       }
     }
 
-    console.log("acerto: "+(correctl/tam)+"erro: "+(errorl/tam));
+    var v1 = correctl/tam;
+    var v2 = errorl/tam;
+
+    console.log("acerto: "+v1+" erro: "+v2);
 	}
 
 	ControlVol(vol){
-	  var svm = this.#svmk;
-	  var min = this.#min;
-	  var max = this.#max;
+	  var svm = this.svmk;
+	  var min = this.min;
+	  var max = this.max;
 
       var fit = this.fit;
 
@@ -175,9 +182,9 @@ class RAS{
 	}
 
 	ControlVolwithstream(vol,audio=document.getElementById('audio_id')){
-    var svm = this.#svmk;
-	  var min = this.#min;
-	  var max = this.#max;
+    var svm = this.svmk;
+	  var min = this.min;
+	  var max = this.max;
 
       var fit = this.fit;
       
@@ -196,4 +203,4 @@ class RAS{
         }
       } 
 	}
-}
+};
