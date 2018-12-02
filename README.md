@@ -4,12 +4,12 @@
 
 RAS ou Regulador Automático de Som é um projeto desenvolvido em JavaScript, ao qual utiliza máquinas de vetores de suporte ou suport vector machines para classificar um conjunto de volumes de áudio, com a finalidade de automatizar o processo de controle de volume de uma plataforma.
 
-## Requisitos
+## Requisitos Opcionais
 
-1. Necessário baixar última versão da svmjs
+1. Baixar última versão da svmjs
  - [Baixar](https://github.com/karpathy/svmjs)
 
-Obs.: caso baixe a versão do projeto git, vá na pasta ```lib```, e copie e cole a svmjs na pasta ```bib``` do projeto baixado.
+Obs.: caso baixe a versão do projeto git, vá na pasta ```lib``` do projeto da svmjs, e copie e cole o arquivo ```svm.js``` na pasta ```bib``` do projeto baixado.
 
 ## Uso
 
