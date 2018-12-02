@@ -9,7 +9,7 @@ RAS ou Regulador Automático de Som é um projeto desenvolvido em JavaScript, ao
 1. Necessário baixar última versão da svmjs
  - [Baixar](https://github.com/karpathy/svmjs)
 
-Obs.: caso baixe a versão do projeto git, vá na pasta lib, e copie e cole a svmjs na pasta bib do projeto baixado.
+Obs.: caso baixe a versão do projeto git, vá na pasta ```lib```, e copie e cole a svmjs na pasta ```bib``` do projeto baixado.
 
 ## Uso
 
