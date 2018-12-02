@@ -115,6 +115,29 @@ os resultados neste caso estarão no log do seu navegador, você pode acessá-lo
 
 ![](rastut.gif)
 
+É possível utilizar validação cruzada para melhorar a classificação, da seguinte maneira
+
+```javascript
+\\ importando bibliotecas
+<script src="./bib/svm.js"></script>
+<script src="./bib/ras.js"></script>
+<script>
+var volim = 25;
+var limmax = 45; \\intervalo máximo que o ras irá atuar
+var limmin = 10; \\ intervalo mínimo que o ras irá atuar
+var total = 40; \\ valor total de dados
+var treino = total*0.75; \\ treino
+var teste = total*0.25; \\teste
+var cross = 20 \\ iterações para a validação cruzada
+
+var ras = new RAS(volim, limmin, limmax, treino, teste);
+ras.train(PATTERNOP,cross);
+ras.test();
+
+</script>
+```
+Neste caso PATTERNOP é uma constante de opções padrão para classificação da svm, e cross corresponde ao número de iterações para a validação cruzada, a qual selecionará dentre vários modelos svms o melhor modelo candidato a melhor classificação para o treinamento, e assim fará o teste no final. 
+
 ## Observações
 
 Dependendo da quantidade de dados utilizados para treino e teste, pode ser que ele se torne ineficiente em sua classificação, o recomendado é que o total de dados seja pelomenos 10 para uma classificação eficiente, no caso você pode configurar sua classificação utilizando uma struct ```var options = {}; ``` da melhor maneira para utilização no ras, com o método ```RAS.train(options);``` caso esteja almejando um desempenho melhor, você pode [ler](https://github.com/karpathy/svmjs) a documentação para saber como configurar a svm do ras, no entanto não é recomendado. 

@@ -4,6 +4,8 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const PATTERNOP = {kernel: 'rbf', rbfsigma: 1};
+
 class RAS{
 	constructor(vol, min, max, train = 21, test = 9){
        var datatr = new Array(train);
@@ -117,17 +119,30 @@ class RAS{
        this.fit = fit;
 	 }
 
-	train(options={kernel: 'rbf', rbfsigma: 1}){
-		var svm = new svmjs.SVM();
-		svm.train(this.datatrain, this.labels, options);
-    this.svmk = svm;
+	train(options={kernel: 'rbf', rbfsigma: 1},cross=1){
+		if(cross=1){
+      var svm = new svmjs.SVM();
+		  svm.train(this.datatrain, this.labels, options);
+    }else{
+      var best = 1.0;
+      for(var i=0;i<cross;i++){
+        var svm = new svmjs.SVM();
+        svm.train(this.datatrain, this.labels, options);
+        var value = this.test(svm);
+        if(value[1] < best){
+          bestsvm = svm;
+          best = value[1];
+        }
+      }
+      svm = bestsvm;
+    }
+      this.svmk = svm;
 	}
 
-	test(){
+	test(svm = this.svmk){
      var tam = this.datatest.length;
 		 var validlabels = new Array(tam);
      var datatest = this.datatest;
-     var svm = this.svmk;
      var min = this.min;
      var max = this.max;
 
@@ -154,6 +169,7 @@ class RAS{
     var v2 = errorl/tam;
 
     console.log("acerto: "+v1+" erro: "+v2);
+    return [v1,v2];
 	}
 
 	ControlVol(vol){
