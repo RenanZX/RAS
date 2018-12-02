@@ -115,7 +115,7 @@ os resultados neste caso estarão no log do seu navegador, você pode acessá-lo
 
 ![](rastut.gif)
 
-É possível utilizar validação cruzada para melhorar a classificação, da seguinte maneira
+É possível utilizar validação cruzada para melhorar a classificação
 
 ```javascript
 \\ importando bibliotecas
