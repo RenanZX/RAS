@@ -37,7 +37,7 @@ audio.volume = ras.ClassifyVol(cvol);
 </script>
 ```
 
-Neste caso ele fará o treinamento através do método train(), e ClassifyVol() irá classificar o volume de áudio html que definimos pela tag audio(poderia ser um vídeo também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
+Neste caso ele fará o treinamento através do método ```train()```, e ```ClassifyVol()``` irá classificar o volume de áudio html que definimos pela tag audio(poderia ser um vídeo também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
 
 No caso podemos utilizar um fator percentual também
 
@@ -111,4 +111,4 @@ ras.test();
 </script>
 ```
 
-os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar````.
+os resultados neste caso estarão no log do seu navegador, você pode acessá-lo caso esteja utilizando o google chrome com o botão esquerdo e clicando em ```inspecionar```.
