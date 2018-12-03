@@ -70,6 +70,31 @@ class RAS{
        this.fit = fit;
 	}
 
+  datasetting(dtrain,dtest,vol,min,max){
+       var k = 0;
+       var fit = vol;
+       this.min = min;
+       this.max = max;
+
+       this.datatrain = dtrain;
+       this.datatest = dtest;
+
+       var tam = this.datatrain.length;
+       var labels = new Array(tam);
+     
+       for(var i=0;i<tam;i++){
+        if((datatr[i][1] >= min)&&(datatr[i][1] <= max)){
+            labels[i] = 1;
+         }else{
+            labels[i] = -1;
+         }
+       }
+
+       this.labels = labels;
+       this.fit = fit;
+       return this;
+  }
+
   sortnewdata(){
        var train = this.datatrain.length;
        var test = this.datatest.length;
