@@ -9,23 +9,26 @@ RAS ou Regulador Automático de Som é um projeto desenvolvido em JavaScript, ao
 1. Baixar última versão da svmjs
  - [Baixar](https://github.com/karpathy/svmjs)
 
-Obs.: caso baixe a versão do projeto git, vá na pasta ```lib``` do projeto da svmjs, e copie e cole o arquivo ```svm.js``` na pasta ```bib``` do projeto baixado.
+2. Baixar última versão da Chartjs
+ - [Baixar](https://github.com/chartjs/Chart.js/releases)
+
+Obs.: caso baixe a versão do projeto git da svmjs, vá na pasta ```lib``` do projeto da svmjs, e copie e cole o arquivo ```svm.js``` na pasta ```bib``` do projeto baixado, para a Chartjs faça a mesma coisa copie e cole o arquivo ```Chart.js```` baixado na pasta ````bib```.
 
 ## Uso
 
 A maneira simples de se utilizar a biblioteca, é desta forma
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> \\um audio qualquer, para video também funciona
+<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
 
 var audio = document.getElementById('audio_id');
 var cvol = audio.volume;
@@ -42,15 +45,15 @@ Neste caso ele fará o treinamento através do método ```train()```, e ```Contr
 No caso podemos utilizar um fator percentual também
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> \\um audio qualquer, para vídeo também funciona
+<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para vídeo também funciona
 
 <script>
 var volim = 25;
-factor = 0.4; \\ fator de determinação do intervalo
+factor = 0.4; // fator de determinação do intervalo
 
 var audio = document.getElementById('audio_id');
 var cvol = audio.volume;
@@ -66,19 +69,19 @@ Neste ele irá utilizar uma margem percentual, no exemplo mostrado acima, foi ut
 Também podemos regular o tamanho total de dados a serem gerados de treino e teste
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> \\um audio qualquer, para video também funciona
+<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
-var total = 40; \\ valor total de dados
-var treino = total*0.75; \\ treino
-var teste = total*0.25; \\teste
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
 
 var audio = document.getElementById('audio_id');
 var cvol = audio.volume;
@@ -95,16 +98,16 @@ audio.volume = ras.ControlVol(cvol);
 Podemos testar nossa classificação da seguinte maneira
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
-var total = 40; \\ valor total de dados
-var treino = total*0.75; \\ treino
-var teste = total*0.25; \\teste
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
 ras.train();
@@ -120,17 +123,17 @@ os resultados neste caso estarão no log do seu navegador, você pode acessá-lo
 É possível utilizar validação cruzada para melhorar a classificação
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
-var total = 40; \\ valor total de dados
-var treino = total*0.75; \\ treino
-var teste = total*0.25; \\teste
-var cross = 20 \\ iterações para a validação cruzada
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
+var cross = 20 // iterações para a validação cruzada
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
 ras.train(PATTERNOP,cross);
@@ -143,17 +146,17 @@ Neste caso ```PATTERNOP``` é uma constante de opções padrão para classifica�
 Você também pode verificar o percentual de erro e acerto de cada modelo treinado utilizando o modo debug
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
-var total = 40; \\ valor total de dados
-var treino = total*0.75; \\ treino
-var teste = total*0.25; \\teste
-var cross = 20 \\ iterações para a validação cruzada
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
+var cross = 20 // iterações para a validação cruzada
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
 ras.train(PATTERNOP,cross,debug=true);
@@ -163,30 +166,59 @@ ras.train(PATTERNOP,cross,debug=true);
 E também pode capturar os resultados caso deseje armazenar em um arquivo, ou gerar um gráfico a partir do mesmo
 
 ```javascript
-\\ importando bibliotecas
+// importando bibliotecas
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
 var volim = 25;
-var limmax = 45; \\intervalo máximo que o ras irá atuar
-var limmin = 10; \\ intervalo mínimo que o ras irá atuar
-var total = 40; \\ valor total de dados
-var treino = total*0.75; \\ treino
-var teste = total*0.25; \\teste
-var cross = 20 \\ iterações para a validação cruzada
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
+var cross = 20 // iterações para a validação cruzada
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
-var resultados = ras.train(PATTERNOP,cross,debug=true);
-console.log(resultados);\\ mostra os resultados no log do seu navegador
-for(var i=0;i < resultados.length;i++){\\ loop com os valores de erro e acerto de cada modelo i
-  console.log("\nacertos:"resultados[i].acertos);
-  console.log("\nerros:"resultados[i].erros);
-}
+ras.train(PATTERNOP,cross,debug=true);
+console.log(ras.acertos);// mostra os resultados da validação cruzada, correspondentes ao acerto no log do seu navegador
+console.log(ras.erros);//mostra os resultados dos erros encontrados da validação cruzada de cada modelo treinado, no log do navegador
 
 </script>
 ```
 
 Neste exemplo ```resultados``` conterá um array com tamanho de ```cross```, cada um contendo um tupla de chaves, correspondentes ao acerto e ao erro respectivamente.
+
+## Gerando Gráficos
+
+Existem três maneiras diferentes para geração de gráficos, no caso usando o exemplo anterior
+
+```javascript
+// importando bibliotecas
+<script src="./bib/Chart.js"></script>
+<script src="./bib/svm.js"></script>
+<script src="./bib/ras.js"></script>
+
+<canvas id="Chart" height="300" width="500"></canvas>
+
+<script>
+var volim = 25;
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
+var cross = 20 // iterações para a validação cruzada
+
+var ras = new RAS(volim, limmin, limmax, treino, teste);
+ras.train(PATTERNOP,cross,debug=true);
+ras.plot();
+
+</script>
+```
+
+O método ```ras.plot()``` irá mostrar um diagrama na sua página html contendo um gráfico <b>taxas de percentagem x modelo</b>, ao qual as linhas serão mostrados na linha azul os valores correspondentes ao <b>acerto</b> da validação enquanto a linha mais acizentada corresponderá ao <b>erro</b> da validação.
+
+Caso queira imprimir apenas os acertos, podemos fazer simplesmente colocando um parâmetro no método plot, no caso ```ras.plot('acerto')```, irá imprimir os valores de acerto, enquanto ```ras.plot('erro')``` irá imprimir os valores correspondentes aos erros.
 
 ## Observações
 
