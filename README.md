@@ -90,7 +90,7 @@ audio.volume = ras.ControlVol(cvol);
 </script>
 ```
 
-## Verificar Acurácia das Classificações
+## Verificando Acurácia das Classificações
 
 Podemos testar nossa classificação da seguinte maneira
 

@@ -94,25 +94,8 @@ class RAS{
          }
        }
 
-       var datatst = new Array(test);
-       var sampletst = Math.round(test/2);
-       for(var j = 0;j < sampletst; j++){
-         datatst[j] = [fit, getRandomInt(min,max)];
-       }
-
-       for(var j=sampletst; j < test ; j++){
-         if(k = 1){
-          datatst[j] = [fit, getRandomInt(max,100)];
-          k = 0;
-         }else{
-            datatst[j] = [fit, getRandomInt(0,min)];
-            k = 1;
-         }
-       }
-
        this.datatrain = datatr;
-       this.datatest = datatst;
-
+       
        var tam = this.datatrain.length;
        var labels = new Array(tam);
      
