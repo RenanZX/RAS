@@ -117,9 +117,10 @@ class RAS{
 
        this.labels = labels;
        this.fit = fit;
+       return this;
 	 }
 
-	train(options={kernel: 'rbf', rbfsigma: 1},cross=1){
+	train(options={kernel: 'rbf', rbfsigma: 1},cross=1,debug=false){
 		if(cross=1){
       var svm = new svmjs.SVM();
 		  svm.train(this.datatrain, this.labels, options);
@@ -129,6 +130,9 @@ class RAS{
         var svm = new svmjs.SVM();
         svm.train(this.datatrain, this.labels, options);
         var value = this.test(svm);
+        if(debug == true){
+          console.log("Modelo "+i+"taxa de acerto"+value[0]+" taxa de erro: "+value[1]);
+        }
         if(value[1] < best){
           bestsvm = svm;
           best = value[1];

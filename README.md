@@ -32,12 +32,12 @@ var cvol = audio.volume;
 
 var ras = new RAS(volim, limmin, limmax);
 ras.train();
-audio.volume = ras.ClassifyVol(cvol);
+audio.volume = ras.ControlVol(cvol);
 
 </script>
 ```
 
-Neste caso ele fará o treinamento através do método ```train()```, e ```ClassifyVol()``` irá classificar o volume de áudio html que definimos pela tag ```audio```(poderia ser uma tag ```vídeo``` também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
+Neste caso ele fará o treinamento através do método ```train()```, e ```ControlVol()``` irá classificar o volume de áudio html que definimos pela tag ```audio```(poderia ser uma tag ```vídeo``` também), e com isso retornará o volume mais adequado, com base nos limites definidos pelo intervalo e o limiar de volume.
 
 No caso podemos utilizar um fator percentual também
 
@@ -57,7 +57,7 @@ var cvol = audio.volume;
 
 var ras = RAS.withfactor(volim, factor);
 ras.train();
-audio.volume = ras.ClassifyVol(cvol);
+audio.volume = ras.ControlVol(cvol);
 
 </script>
 ```
@@ -85,7 +85,7 @@ var cvol = audio.volume;
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
 ras.train();
-audio.volume = ras.ClassifyVol(cvol);
+audio.volume = ras.ControlVol(cvol);
 
 </script>
 ```
