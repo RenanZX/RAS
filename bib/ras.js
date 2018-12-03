@@ -4,6 +4,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+class validate{
+  constructor(acerto,erro){
+    this.acerto = acerto;
+    this.erro = erro;
+  }
+}
+
 const PATTERNOP = {kernel: 'rbf', rbfsigma: 1};
 
 class RAS{
@@ -63,6 +70,64 @@ class RAS{
        this.fit = fit;
 	}
 
+  sortnewdata(){
+       var train = this.datatrain.length;
+       var test = this.datatest.length;
+       var datatr = new Array(train);
+       var sampletr = Math.round(train/3);
+       var k = 0;
+       var fit = this.fit;
+       var min = this.min;
+       var max = this.max;
+
+       for(var i = 0;i < sampletr; i++){
+         datatr[i] = [fit, getRandomInt(min,max)];
+       }
+
+       for(var i=sampletr; i < train ; i++){
+         if(k = 1){
+          datatr[i] = [fit, getRandomInt(max,100)];
+          k = 0;
+         }else{
+            datatr[i] = [fit, getRandomInt(0,min)];
+            k = 1;
+         }
+       }
+
+       var datatst = new Array(test);
+       var sampletst = Math.round(test/2);
+       for(var j = 0;j < sampletst; j++){
+         datatst[j] = [fit, getRandomInt(min,max)];
+       }
+
+       for(var j=sampletst; j < test ; j++){
+         if(k = 1){
+          datatst[j] = [fit, getRandomInt(max,100)];
+          k = 0;
+         }else{
+            datatst[j] = [fit, getRandomInt(0,min)];
+            k = 1;
+         }
+       }
+
+       this.datatrain = datatr;
+       this.datatest = datatst;
+
+       var tam = this.datatrain.length;
+       var labels = new Array(tam);
+     
+       for(var i=0;i<tam;i++){
+        if((datatr[i][1] >= min)&&(datatr[i][1] <= max)){
+            labels[i] = 1;
+         }else{
+            labels[i] = -1;
+         }
+       }
+
+       this.labels = labels;
+       this.fit = fit;
+  }
+
 	withfactor(vol, factor=0.4, train = 21, test = 9){
       var max = (1 + factor)*vol;
       var min = (1 - factor)*vol;
@@ -121,17 +186,23 @@ class RAS{
 	 }
 
 	train(options={kernel: 'rbf', rbfsigma: 1},cross=1,debug=false){
-		if(cross=1){
+		if(cross == 1){
       var svm = new svmjs.SVM();
 		  svm.train(this.datatrain, this.labels, options);
     }else{
       var best = 1.0;
+      var bestsvm;
+      if(debug == true){
+        var results = new Array(cross);
+      }
       for(var i=0;i<cross;i++){
         var svm = new svmjs.SVM();
+        this.sortnewdata();
         svm.train(this.datatrain, this.labels, options);
-        var value = this.test(svm);
+        var value = this.test(svm,debug=true);
         if(debug == true){
-          console.log("Modelo "+i+"taxa de acerto"+value[0]+" taxa de erro: "+value[1]);
+          console.log("Modelo "+i+"\n taxa de acerto: "+value.acerto+"\n taxa de erro: "+value.erro);
+          results[i] = value;
         }
         if(value[1] < best){
           bestsvm = svm;
@@ -141,9 +212,12 @@ class RAS{
       svm = bestsvm;
     }
       this.svmk = svm;
+      if(debug == true){
+        return results;
+      }
 	}
 
-	test(svm = this.svmk){
+	test(svm = this.svmk, debug=false){
      var tam = this.datatest.length;
 		 var validlabels = new Array(tam);
      var datatest = this.datatest;
@@ -171,9 +245,10 @@ class RAS{
 
     var v1 = correctl/tam;
     var v2 = errorl/tam;
-
-    console.log("acerto: "+v1+" erro: "+v2);
-    return [v1,v2];
+    if(debug != true){
+      console.log("acerto: "+v1+" erro: "+v2);
+    }
+    return new validate(v1,v2);
 	}
 
 	ControlVol(vol){

@@ -90,6 +90,8 @@ audio.volume = ras.ControlVol(cvol);
 </script>
 ```
 
+## Verificar Acurácia das Classificações
+
 Podemos testar nossa classificação da seguinte maneira
 
 ```javascript
@@ -137,6 +139,54 @@ ras.test();
 </script>
 ```
 Neste caso ```PATTERNOP``` é uma constante de opções padrão para classificação da svm, e ```cross``` corresponde ao número de iterações para a validação cruzada, a qual selecionará dentre vários modelos svms o melhor modelo candidato a melhor classificação para o treinamento, e assim fará o teste no final. 
+
+Você também pode verificar o percentual de erro e acerto de cada modelo treinado utilizando o modo debug
+
+```javascript
+\\ importando bibliotecas
+<script src="./bib/svm.js"></script>
+<script src="./bib/ras.js"></script>
+<script>
+var volim = 25;
+var limmax = 45; \\intervalo máximo que o ras irá atuar
+var limmin = 10; \\ intervalo mínimo que o ras irá atuar
+var total = 40; \\ valor total de dados
+var treino = total*0.75; \\ treino
+var teste = total*0.25; \\teste
+var cross = 20 \\ iterações para a validação cruzada
+
+var ras = new RAS(volim, limmin, limmax, treino, teste);
+ras.train(PATTERNOP,cross,debug=true);
+
+</script>
+```
+E também pode capturar os resultados caso deseje armazenar em um arquivo, ou gerar um gráfico a partir do mesmo
+
+```javascript
+\\ importando bibliotecas
+<script src="./bib/svm.js"></script>
+<script src="./bib/ras.js"></script>
+<script>
+var volim = 25;
+var limmax = 45; \\intervalo máximo que o ras irá atuar
+var limmin = 10; \\ intervalo mínimo que o ras irá atuar
+var total = 40; \\ valor total de dados
+var treino = total*0.75; \\ treino
+var teste = total*0.25; \\teste
+var cross = 20 \\ iterações para a validação cruzada
+
+var ras = new RAS(volim, limmin, limmax, treino, teste);
+var resultados = ras.train(PATTERNOP,cross,debug=true);
+console.log(resultados);\\ mostra os resultados no log do seu navegador
+for(var i=0;i < resultados.length;i++){\\ loop com os valores de erro e acerto de cada modelo i
+  console.log("\nacertos:"resultados[i].acertos);
+  console.log("\nerros:"resultados[i].erros);
+}
+
+</script>
+```
+
+Neste exemplo ```resultados``` conterá um array com tamanho de ```cross```, cada um contendo um tupla de chaves, correspondentes ao acerto e ao erro respectivamente.
 
 ## Observações
 
