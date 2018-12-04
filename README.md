@@ -165,7 +165,9 @@ ras.train(PATTERNOP,cross,debug=true);
 
 </script>
 ```
-E também é possível capturar os resultados caso necessário
+Para consultar os resultados aperte ```Ctrl+Shift+I``` caso esteja utilizando o google chrome, ou clique em ```inspecionar``` no seu navegador de internet e avalie os resultados do treinamento.
+
+Também é possível capturar os resultados obtidos caso necessário
 
 ```javascript
 // importando bibliotecas
@@ -218,7 +220,7 @@ audio.volume = ras.ControlVol(cvol, debug=true); //classifica o volume de acordo
 </script>
 ```
 
-Aqui neste exemplo utilizei o mesmo método do primeiro exemplo para o controle de volume, no entanto utilizei a validação cruzada para a classificação, no final o resultado da classificação será mostrado no log do seu navegador.
+Aqui neste exemplo utilizei o mesmo método do primeiro exemplo para o controle de volume, no entanto utilizei a validação cruzada para a classificação, no final o resultado da classificação será mostrado no log do navegador.
 
 ## Gerando Gráficos
 
