@@ -142,9 +142,11 @@ class plotRAS{
 };
 
 const PATTERNOP = {kernel: 'rbf', rbfsigma: 1};
+const PATTERNTR = 21;
+const PATTERNTEST = 9;
 
 class RAS{
-	constructor(vol, min, max, train = 21, test = 9){
+	constructor(vol, min, max, train = 21, test = 9, debug=false){
        var datatr = new Array(train);
        var sampletr = Math.round(train/3);
        var k = 0;
@@ -185,6 +187,14 @@ class RAS{
        this.datatrain = datatr;
        this.datatest = datatst;
 
+       if(debug == true){
+         console.log("Dados gerados para treinamento:\n");
+         console.log(datatr);
+         console.log("Dados gerados para teste:\n");
+         console.log(datatst);
+         console.log("Nível de Volume:"+fit+"\n");
+       }
+
        var tam = this.datatrain.length;
 	     var labels = new Array(tam);
      
@@ -200,7 +210,7 @@ class RAS{
        this.fit = fit;
 	}
 
-  datasetting(dtrain,dtest,vol,min,max){
+  datasetting(dtrain,dtest,vol,min,max,debug=false){
        var k = 0;
        var fit = vol;
        this.min = min;
@@ -218,6 +228,14 @@ class RAS{
          }else{
             labels[i] = -1;
          }
+       }
+
+       if(debug == true){
+         console.log("Dados gerados para treinamento:\n");
+         console.log(datatr);
+         console.log("Dados gerados para teste:\n");
+         console.log(datatst);
+         console.log("Nível de Volume:"+fit+"\n");
        }
 
        this.labels = labels;
@@ -266,7 +284,7 @@ class RAS{
        this.fit = fit;
   }
 
-	withfactor(vol, factor=0.4, train = 21, test = 9){
+	withfactor(vol, factor=0.4, train = 21, test = 9,debug=false){
       var max = (1 + factor)*vol;
       var min = (1 - factor)*vol;
       var k = 0;
@@ -306,6 +324,14 @@ class RAS{
 
        this.datatrain = datatr;
        this.datatest = datatst;
+
+       if(debug == true){
+         console.log("Dados gerados para treinamento:\n");
+         console.log(datatr);
+         console.log("Dados gerados para teste:\n");
+         console.log(datatst);
+         console.log("Nível de Volume:"+fit+"\n");
+       }
 
        var tam = this.datatrain.length;
      var labels = new Array(tam);
@@ -350,12 +376,12 @@ class RAS{
         }
       }
       svm = bestsvm;
-    }
-      this.svmk = svm;
       if(debug == true){
         this.acertos = acertos;
         this.erros = erros;
       }
+    }
+      this.svmk = svm;
 	}
 
 	test(svm = this.svmk, debug=false){
@@ -421,7 +447,7 @@ class RAS{
     }
   };
 
-	ControlVol(vol){
+	ControlVol(vol,debug=false){
 	  var svm = this.svmk;
 	  var min = this.min;
 	  var max = this.max;
@@ -429,7 +455,6 @@ class RAS{
       var fit = this.fit;
 
       if(svm != null){
-
         var value = svm.marginOne([fit,vol]);
         if((value < (min/100))||(value > (max/100))){
            aux = 0;
@@ -438,14 +463,20 @@ class RAS{
         }else{
           aux = max/100;
          }
+         if(debug==true){
+           console.log("nível de volume adequado:"+aux);
+         }
          return aux;
+        }
+        if(debug == true){
+          console.log("nível de volume adequado:"+value);
         }
         return value;
      }
      return 0;
 	}
 
-	ControlVolwithstream(vol,audio=document.getElementById('audio_id')){
+	ControlVolwithstream(vol,audio=document.getElementById('audio_id'),debug=false){
     var svm = this.svmk;
 	  var min = this.min;
 	  var max = this.max;
@@ -461,8 +492,14 @@ class RAS{
           }else{
             aux = max/100;
           }
+          if(debug==true){
+            console.log("nível de volume adequado:"+aux);
+          }
           audio.volume = aux;
         }else{
+          if(debug == true){
+            console.log("nível de volume adequado:"+value);
+          }
           audio.volume = value;
         }
       } 

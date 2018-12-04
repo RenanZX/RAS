@@ -23,7 +23,7 @@ A maneira simples de se utilizar a biblioteca, é desta forma
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para video também funciona
+<audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
 var volim = 25;
@@ -49,7 +49,7 @@ No caso podemos utilizar um fator percentual também
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para vídeo também funciona
+<audio src="./audio/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para vídeo também funciona
 
 <script>
 var volim = 25;
@@ -73,7 +73,7 @@ Também podemos regular o tamanho total de dados a serem gerados de treino e tes
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 
-<audio src="./sampleaudio" id="audio_id"></audio> //um audio qualquer, para video também funciona
+<audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
 var volim = 25;
@@ -143,6 +143,8 @@ ras.test();
 ```
 Neste caso ```PATTERNOP``` é uma constante de opções padrão para classificação da svm, e ```cross``` corresponde ao número de iterações para a validação cruzada, a qual selecionará dentre vários modelos svms o melhor modelo candidato a melhor classificação para o treinamento, e assim fará o teste no final. 
 
+## Modo Debug
+
 Você também pode verificar o percentual de erro e acerto de cada modelo treinado utilizando o modo debug
 
 ```javascript
@@ -163,7 +165,7 @@ ras.train(PATTERNOP,cross,debug=true);
 
 </script>
 ```
-E também pode capturar os resultados caso deseje armazenar em um arquivo, ou gerar um gráfico a partir do mesmo
+E também é possível capturar os resultados caso necessário
 
 ```javascript
 // importando bibliotecas
@@ -186,11 +188,41 @@ console.log(ras.erros);//mostra os resultados dos erros encontrados da validaç�
 </script>
 ```
 
-Neste exemplo ```resultados``` conterá um array com tamanho de ```cross```, cada um contendo um tupla de chaves, correspondentes ao acerto e ao erro respectivamente.
+Neste exemplo ```ras``` conterá dois arrays de valores, no caso um corresponde aos acertos da validação, e o outro correspondente aos erros da validação, respectivamente.
+
+```ControlVol``` também pode ser debugado, utilizando o primeiro exemplo temos
+
+```javascript
+// importando bibliotecas
+<script src="./bib/svm.js"></script>
+<script src="./bib/ras.js"></script>
+
+<audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
+
+<script>
+var volim = 25;
+var limmax = 45; //intervalo máximo que o ras irá atuar
+var limmin = 10; // intervalo mínimo que o ras irá atuar
+var total = 40; // valor total de dados
+var treino = total*0.75; // treino
+var teste = total*0.25; //teste
+var cross = 20 // iterações para a validação cruzada
+
+var audio = document.getElementById('audio_id'); //audio
+var cvol = audio.volume; // volume do audio
+
+var ras = new RAS(volim, limmin, limmax, treino, teste);
+ras.train(PATTERNOP,cross);//faz o treinamento para a classificação
+audio.volume = ras.ControlVol(cvol, debug=true); //classifica o volume de acordo com os parâmetros recebidos e mostra no log do navegador
+
+</script>
+```
+
+Aqui neste exemplo utilizei o mesmo método do primeiro exemplo para o controle de volume, no entanto utilizei a validação cruzada para a classificação, no final o resultado da classificação será mostrado no log do seu navegador.
 
 ## Gerando Gráficos
 
-Existem três maneiras diferentes para geração de gráficos, no caso usando o exemplo anterior
+A geração de gráficos é bem simples, no caso usando o exemplo anterior, com a adição de uma tag html ```canvas``` e a biblioteca ```Chart.js```, podemos gerar os gráficos da seguinte forma:
 
 ```javascript
 // importando bibliotecas
@@ -211,7 +243,7 @@ var cross = 20 // iterações para a validação cruzada
 
 var ras = new RAS(volim, limmin, limmax, treino, teste);
 ras.train(PATTERNOP,cross,debug=true);
-ras.plot();
+ras.plot();//gera os gráficos da aplicação
 
 </script>
 ```
