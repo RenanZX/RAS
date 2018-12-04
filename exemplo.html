@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0""http://ww.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Teste</title>
+</head>
+<body>
+<script type="text/javascript" src="./bib/svm.js"></script>
+<script type="text/javascript" src="./bib/Chart.js"></script>
+<script type="text/javascript" src="./bib/ras.js"></script>
+
+<canvas id="Chart" height="300" width="500"></canvas>
+
+<script type="text/javascript">
+  var volim = 25; //valor limite
+  var limmax = 45; //intervalo máximo que o ras irá atuar
+  var limmin = 10; // intervalo mínimo que o ras irá atuar
+  var total = 40; // valor total de dados
+  var treino = total*0.75; // treino
+  var teste = total*0.25; //teste
+  var cross = 20 // iterações para a validação cruzada
+
+  var ras = new RAS(volim, limmin, limmax, treino, teste);
+  ras.train(PATTERNOP,cross,debug=true);
+  ras.plot();
+</script>
+</body>
+</html>

@@ -26,7 +26,7 @@ A maneira simples de se utilizar a biblioteca, é desta forma
 <audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 
@@ -52,7 +52,7 @@ No caso podemos utilizar um fator percentual também
 <audio src="./audio/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para vídeo também funciona
 
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 factor = 0.4; // fator de determinação do intervalo
 
 var audio = document.getElementById('audio_id');
@@ -76,7 +76,7 @@ Também podemos regular o tamanho total de dados a serem gerados de treino e tes
 <audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
-var volim = 25;
+var volim = 25; //valor limite do volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
@@ -102,7 +102,7 @@ Podemos testar nossa classificação da seguinte maneira
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
@@ -127,7 +127,7 @@ os resultados neste caso estarão no log do seu navegador, você pode acessá-lo
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
@@ -152,7 +152,7 @@ Você também pode verificar o percentual de erro e acerto de cada modelo treina
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
@@ -174,7 +174,7 @@ Também é possível capturar os resultados obtidos caso necessário
 <script src="./bib/svm.js"></script>
 <script src="./bib/ras.js"></script>
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
@@ -202,7 +202,7 @@ Neste exemplo ```ras``` conterá dois arrays de valores, no caso um corresponde 
 <audio src="./audios/sampleaudio.mp3" id="audio_id"></audio> //um audio qualquer, para video também funciona
 
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados
