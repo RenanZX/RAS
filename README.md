@@ -12,7 +12,7 @@ RAS ou Regulador Automático de Som é um projeto desenvolvido em JavaScript, ao
 2. Baixar última versão da Chartjs
  - [Baixar](https://github.com/chartjs/Chart.js/releases)
 
-Obs.: caso baixe a versão do projeto git da svmjs, vá na pasta ```lib``` do projeto da svmjs, e copie e cole o arquivo ```svm.js``` na pasta ```bib``` do projeto baixado, para a Chartjs faça a mesma coisa copie e cole o arquivo ```Chart.js```` baixado na pasta ````bib```.
+Obs.: caso baixe a versão do projeto git da svmjs, vá na pasta ```lib``` do projeto da svmjs, e copie e cole o arquivo ```svm.js``` na pasta ```bib``` do projeto baixado, para a Chartjs faça a mesma coisa copie e cole o arquivo ```Chart.js``` baixado na pasta ```bib```.
 
 ## Uso
 
