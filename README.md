@@ -235,7 +235,7 @@ A geração de gráficos é bem simples, no caso usando o exemplo anterior, com 
 <canvas id="Chart" height="300" width="500"></canvas>
 
 <script>
-var volim = 25;
+var volim = 25; //valor limite de volume
 var limmax = 45; //intervalo máximo que o ras irá atuar
 var limmin = 10; // intervalo mínimo que o ras irá atuar
 var total = 40; // valor total de dados

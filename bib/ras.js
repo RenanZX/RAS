@@ -476,7 +476,7 @@ class RAS{
      return 0;
 	}
 
-	ControlVolwithstream(vol,audio=document.getElementById('audio_id'),debug=false){
+	ControlVolwithstream(audio=document.getElementById('audio_id'),debug=false){
     var svm = this.svmk;
 	  var min = this.min;
 	  var max = this.max;
@@ -484,7 +484,7 @@ class RAS{
       var fit = this.fit;
       
       if (svm != null){
-        var value = svm.marginOne([fit,vol]);
+        var value = svm.marginOne([fit,audio.volume]);
          if((value < (min/100))||(value > (max/100))){
            aux = 0;
           if(value > 0){
